@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
+import "remixicon/fonts/remixicon.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,9 +34,7 @@ export default function RootLayout({
           <Sidebar />
           <div className="flex flex-col flex-grow">
             <Header />
-            <main className="p-4 flex-grow border-2 border-neutral/50 rounded-md ">
-              {children}
-            </main>
+            <main className="p-4 flex-grow">{children}</main>
           </div>
         </div>
       </body>

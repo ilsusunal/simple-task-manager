@@ -6,29 +6,29 @@ import Avatar from "@/components/ui/Avatar";
 
 export default function ProjectPage() {
   const teamMembers = [
-    { id: 1, name: "Alice", avatar: "/avatars/alice.png" },
-    { id: 2, name: "Bob", avatar: "/avatars/bob.png" },
-    { id: 3, name: "Charlie", avatar: "/avatars/charlie.png" },
+    { id: 1, name: "Alice", avatar: "/default-avatar.png" },
+    { id: 2, name: "Bob", avatar: "/default-avatar.png" },
+    { id: 3, name: "Charlie", avatar: "/default-avatar.png" },
   ];
 
   const OverviewTab = (
     <div className="text-sm">
-      <h2 className="text-xl font-bold mb-2">Project Overview</h2>
-      <p>Here’s some overview text...</p>
+      <h2 className="text-xl font-bold mb-2">Overview</h2>
+      <p>project dashboard</p>
     </div>
   );
 
   const KanbanTab = (
     <div className="text-sm">
-      <h2 className="text-xl font-bold mb-2">Kanban Board</h2>
-      <p>Render your Kanban board component here...</p>
+      <h2 className="text-xl font-bold mb-2">Tasks</h2>
+      <p>kanban</p>
     </div>
   );
 
   const TeamTab = (
     <div className="text-sm">
       <h2 className="text-xl font-bold mb-2">Team Members</h2>
-      <p>Render your team-specific info or table here...</p>
+      <p>team cards</p>
     </div>
   );
 

@@ -1,6 +1,6 @@
 export default function Sidebar() {
   return (
-    <section className="w-64 bg-background text-text flex flex-col">
+    <section className="w-64 border-r-2 text-text flex flex-col">
       <div className="p-4 font-bold text-xl text-primary">
         Simple Task Manager
       </div>
