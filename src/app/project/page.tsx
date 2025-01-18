@@ -3,6 +3,7 @@ import React from "react";
 import TabContainer from "@/components/ui/TabContainer";
 import Button from "@/components/ui/Button";
 import Avatar from "@/components/ui/Avatar";
+import KanbanBoard from "@/components/project/KanbanBoard";
 
 export default function ProjectPage() {
   const teamMembers = [
@@ -21,7 +22,7 @@ export default function ProjectPage() {
   const KanbanTab = (
     <div className="text-sm">
       <h2 className="text-xl font-bold mb-2">Tasks</h2>
-      <p>kanban</p>
+      <KanbanBoard />
     </div>
   );
 
@@ -34,7 +35,7 @@ export default function ProjectPage() {
 
   const tabs = [
     { label: "Overview", content: OverviewTab },
-    { label: "Kanban", content: KanbanTab },
+    { label: "Tasks", content: KanbanTab },
     { label: "Team", content: TeamTab },
   ];
 
