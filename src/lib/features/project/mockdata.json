@@ -1,0 +1,372 @@
+{
+  "projects": [
+    {
+      "project": {
+        "id": "1",
+        "title": "Kanban Board Development",
+        "description": "Develop a fully functional Kanban board with drag-and-drop features.",
+        "startDate": "2024-01-01",
+        "dueDate": "2024-03-01",
+        "icon": "ri-task-line"
+      },
+      "tasks": [
+        {
+          "id": "1",
+          "title": "Design UI Components",
+          "status": "in-progress",
+          "dueDate": "2024-01-20",
+          "description": "Create reusable UI components for the Kanban board.",
+          "assignees": [
+            {
+              "id": "1",
+              "fullName": "İlsu Sunal",
+              "userName": "ilsu.sunal",
+              "avatar": {
+                "src": "https://avatar.iran.liara.run/public/girl?1",
+                "alt": "İlsu Sunal",
+                "size": 40
+              },
+              "email": "random@random.com",
+              "title": "Frontend Developer"
+            }
+          ],
+          "timeEstimation": 12,
+          "category": { "name": "Design", "color": "blue" }
+        },
+        {
+          "id": "2",
+          "title": "Implement Drag and Drop",
+          "status": "open",
+          "dueDate": "2024-01-25",
+          "description": "Add drag and drop functionality using dnd-kit.",
+          "assignees": [
+            {
+              "id": "2",
+              "fullName": "Alex Johnson",
+              "userName": "alex.johnson",
+              "avatar": {
+                "src": "https://avatar.iran.liara.run/public/2",
+                "alt": "Alex Johnson",
+                "size": 40
+              },
+              "email": "alex@random.com",
+              "title": "Backend Developer"
+            },
+            {
+              "id": "1",
+              "fullName": "İlsu Sunal",
+              "userName": "ilsu.sunal",
+              "avatar": {
+                "src": "https://avatar.iran.liara.run/public/girl?1",
+                "alt": "İlsu Sunal",
+                "size": 40
+              },
+              "email": "random@random.com",
+              "title": "Frontend Developer"
+            }
+          ],
+          "timeEstimation": 15,
+          "category": { "name": "Development", "color": "green" }
+        },
+        {
+          "id": "22",
+          "title": "Test status changing functionality",
+          "status": "open",
+          "dueDate": "2024-01-25",
+          "description": "Test status changing functionality using postman.",
+          "assignees": [
+            {
+              "id": "2",
+              "fullName": "Alex Johnson",
+              "userName": "alex.johnson",
+              "avatar": {
+                "src": "https://avatar.iran.liara.run/public/2",
+                "alt": "Alex Johnson",
+                "size": 40
+              },
+              "email": "alex@random.com",
+              "title": "Backend Developer"
+            },
+            {
+              "id": "10",
+              "fullName": "Anne Stead",
+              "userName": "anne.stead",
+              "avatar": {
+                "src": "https://avatar.iran.liara.run/public/girl?10",
+                "alt": "Anne Stead",
+                "size": 40
+              },
+              "email": "anne@random.com",
+              "title": "Backend Developer"
+            }
+          ],
+          "timeEstimation": 15,
+          "category": { "name": "Development", "color": "green" }
+        }
+      ],
+      "team": {
+        "id": "1",
+        "title": "Frontend Team",
+        "description": "Handles UI/UX and frontend development.",
+        "teamMembers": [
+          {
+            "id": "1",
+            "fullName": "İlsu Sunal",
+            "userName": "ilsu.sunal",
+            "avatar": {
+              "src": "https://avatar.iran.liara.run/public/girl?1",
+              "alt": "İlsu Sunal",
+              "size": 40
+            },
+            "email": "random@random.com",
+            "title": "Frontend Developer"
+          },
+          {
+            "id": "2",
+            "fullName": "Alex Johnson",
+            "userName": "alex.johnson",
+            "avatar": {
+              "src": "https://avatar.iran.liara.run/public/2",
+              "alt": "Alex Johnson",
+              "size": 40
+            },
+            "email": "alex@random.com",
+            "title": "Backend Developer"
+          }
+        ]
+      }
+    },
+    {
+      "project": {
+        "id": "2",
+        "title": "Mobile App Development",
+        "description": "Develop a cross-platform mobile application.",
+        "startDate": "2024-02-01",
+        "dueDate": "2024-04-30",
+        "icon": "ri-smartphone-line"
+      },
+      "tasks": [
+        {
+          "id": "1",
+          "title": "Prototype Mobile UI",
+          "status": "in-progress",
+          "dueDate": "2024-02-15",
+          "description": "Design the mobile UI prototypes.",
+          "assignees": [
+            {
+              "id": "4",
+              "fullName": "Nina Brown",
+              "userName": "nina.brown",
+              "avatar": {
+                "src": "https://avatar.iran.liara.run/public/girl?4",
+                "alt": "Nina Brown",
+                "size": 40
+              },
+              "email": "nina@random.com",
+              "title": "Graphic Designer"
+            }
+          ],
+          "timeEstimation": 10,
+          "category": { "name": "Design", "color": "purple" }
+        },
+        {
+          "id": "2",
+          "title": "Integrate API",
+          "status": "open",
+          "dueDate": "2024-03-01",
+          "description": "Connect mobile frontend with backend API.",
+          "assignees": [
+            {
+              "id": "2",
+              "fullName": "Alex Johnson",
+              "userName": "alex.johnson",
+              "avatar": {
+                "src": "https://avatar.iran.liara.run/public/2",
+                "alt": "Alex Johnson",
+                "size": 40
+              },
+              "email": "alex@random.com",
+              "title": "Backend Developer"
+            }
+          ],
+          "timeEstimation": 14,
+          "category": { "name": "Development", "color": "green" }
+        }
+      ],
+      "team": {
+        "id": "2",
+        "title": "Design Team",
+        "description": "Responsible for UI/UX and graphic design.",
+        "teamMambers": [
+          {
+            "id": "4",
+            "fullName": "Nina Brown",
+            "userName": "nina.brown",
+            "avatar": {
+              "src": "https://avatar.iran.liara.run/public/girl?4",
+              "alt": "Nina Brown",
+              "size": 40
+            },
+            "email": "nina@random.com",
+            "title": "Graphic Designer"
+          }
+        ]
+      }
+    }
+  ],
+  "teams": [
+    {
+      "id": "1",
+      "title": "Engineering Team",
+      "description": "Handles frontend and backend development.",
+      "teamMembers": [
+        {
+          "id": "1",
+          "fullName": "İlsu Sunal",
+          "userName": "ilsu.sunal",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/girl?1",
+            "alt": "İlsu Sunal",
+            "size": 40
+          },
+          "email": "random@random.com",
+          "title": "Frontend Developer"
+        },
+        {
+          "id": "2",
+          "fullName": "Alex Johnson",
+          "userName": "alex.johnson",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/2",
+            "alt": "Alex Johnson",
+            "size": 40
+          },
+          "email": "alex@random.com",
+          "title": "Backend Developer"
+        },
+        {
+          "id": "10",
+          "fullName": "Anne Stead",
+          "userName": "anne.stead",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/girl?10",
+            "alt": "Anne Stead",
+            "size": 40
+          },
+          "email": "anne@random.com",
+          "title": "Backend Developer"
+        },
+        {
+          "id": "11",
+          "fullName": "Claude Anderson",
+          "userName": "claude.anderson",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/11",
+            "alt": "Claude Anderson",
+            "size": 40
+          },
+          "email": "claude@random.com",
+          "title": "IT Team Lead"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Design Team",
+      "description": "Responsible for UI/UX and graphic design.",
+      "teamMembers": [
+        {
+          "id": "4",
+          "fullName": "Nina Brown",
+          "userName": "nina.brown",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/girl?4",
+            "alt": "Nina Brown",
+            "size": 40
+          },
+          "email": "nina@random.com",
+          "title": "Graphic Designer"
+        },
+        {
+          "id": "5",
+          "fullName": "Jacob Wallace",
+          "userName": "jacob.wallace",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/5",
+            "alt": "Jacob Wallace",
+            "size": 40
+          },
+          "email": "jacob@random.com",
+          "title": "UX Researcher"
+        },
+        {
+          "id": "12",
+          "fullName": "Jeannette Goodman",
+          "userName": "jeannette.goodman",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/girl?12",
+            "alt": "Jeannette Goodman",
+            "size": 40
+          },
+          "email": "jeannette@random.com",
+          "title": "UI Designer"
+        },
+        {
+          "id": "13",
+          "fullName": "Jeremy Dixon",
+          "userName": "jeremy.dixon",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/13",
+            "alt": "Jeremy Dixon",
+            "size": 40
+          },
+          "email": "jeremy@random.com",
+          "title": "Design Team Lead"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Sales Team",
+      "description": "Handles customer acquisition and management.",
+      "teamMembers": [
+        {
+          "id": "7",
+          "fullName": "James King",
+          "userName": "james.king",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/7",
+            "alt": "James King",
+            "size": 40
+          },
+          "email": "james@random.com",
+          "title": "Sales Manager"
+        },
+        {
+          "id": "8",
+          "fullName": "Laura Scott",
+          "userName": "laura.scott",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/girl?8",
+            "alt": "Laura Scott",
+            "size": 40
+          },
+          "email": "laura@random.com",
+          "title": "Account Executive"
+        },
+        {
+          "id": "9",
+          "fullName": "Peter Adams",
+          "userName": "peter.adams",
+          "avatar": {
+            "src": "https://avatar.iran.liara.run/public/9",
+            "alt": "Peter Adams",
+            "size": 40
+          },
+          "email": "peter@random.com",
+          "title": "Sales Representative"
+        }
+      ]
+    }
+  ]
+}

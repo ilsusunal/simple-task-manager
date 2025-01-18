@@ -1,10 +1,16 @@
-export interface ProjectData {
-  project: ProjectInfo;
-  tasks: Task[];
+export interface PageData {
+  projects: ProjectData[];
   teams: Team[];
 }
 
-export interface ProjectInfo {
+export interface ProjectData {
+  project: Project;
+  team: Team;
+  tasks: Task[];
+}
+
+export interface Project {
+  id: string;
   title: string;
   description: string;
   startDate: string;
@@ -24,9 +30,10 @@ export interface Task {
 }
 
 export interface Team {
+  id: string;
   title: string;
   description: string;
-  teamMambers: TeamMember[];
+  teamMembers: TeamMember[];
 }
 
 export interface TeamMember {

@@ -20,7 +20,7 @@ export default function AvatarGroup({ users, maxCount = 5 }: AvatarGroupProps) {
     <div className="flex -space-x-2">
       {displayedUsers.map((user) => (
         <div key={user.id} className="border-2 border-white rounded-full">
-          <Avatar src={user.avatar} alt={user.name} />
+          <Avatar src={user.avatar} alt={user.name} size={60} />
         </div>
       ))}
       {remainder > 0 && (

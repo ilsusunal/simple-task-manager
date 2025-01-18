@@ -14,10 +14,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { addTask, updateTaskStatus } from "@/lib/features/tasks/tasksSlice";
 import type { Task } from "@/types/kanban";
-import TaskCard from "./TaskCard";
+import TaskCard from "../TaskCard";
 import Button from "@/components/ui/Button";
 
 const STATUSES: Task["status"][] = ["open", "in-progress", "review", "done"];
@@ -29,10 +27,17 @@ const labelMap: Record<Task["status"], string> = {
   done: "Done",
 };
 
-export default function KanbanBoard() {
-  const tasks = useAppSelector((state) => state.tasks.tasks);
-  const dispatch = useAppDispatch();
+interface KanbanBoardProps {
+  tasks: Task[];
+  onUpdateTaskStatus?: (taskId: string, newStatus: Task["status"]) => void;
+  onAddTask?: (columnStatus: Task["status"]) => void;
+}
 
+export default function KanbanBoard({
+  tasks,
+  onUpdateTaskStatus,
+  onAddTask,
+}: KanbanBoardProps) {
   const groupedTasks = STATUSES.map((status) => ({
     status,
     tasks: tasks.filter((t) => t.status === status),
@@ -40,18 +45,16 @@ export default function KanbanBoard() {
 
   const sensors = useSensors(useSensor(MouseSensor));
 
-  // * Updating the status of the task
   const handleDragEnd = useCallback(
     (event: DragEndEvent) => {
       const { active, over } = event;
-      if (!over) return;
+      if (!over || !onUpdateTaskStatus) return;
 
       const draggedTaskId = active.id as string;
       const newStatus = over.id as Task["status"];
-
-      dispatch(updateTaskStatus({ id: draggedTaskId, status: newStatus }));
+      onUpdateTaskStatus(draggedTaskId, newStatus);
     },
-    [dispatch]
+    [onUpdateTaskStatus]
   );
 
   return (
@@ -67,6 +70,7 @@ export default function KanbanBoard() {
               key={column.status}
               status={column.status}
               tasks={column.tasks}
+              onAddTask={onAddTask}
             />
           ))}
         </div>
@@ -78,25 +82,14 @@ export default function KanbanBoard() {
 interface KanbanColumnProps {
   status: Task["status"];
   tasks: Task[];
+  onAddTask?: (columnStatus: Task["status"]) => void;
 }
 
-function KanbanColumn({ status, tasks }: KanbanColumnProps) {
-  const dispatch = useAppDispatch();
-
+function KanbanColumn({ status, tasks, onAddTask }: KanbanColumnProps) {
   const handleAddTask = () => {
-    const title = prompt("New task title?") || "Untitled Task";
-    dispatch(
-      addTask({
-        title,
-        description: "Lorem ipsum",
-        dueDate: "01-01-2030",
-        assignees: [],
-        timeEstimation: 1,
-        category: { name: "Uncategorized", color: "secondary" },
-        status: "open",
-        id: "",
-      })
-    );
+    if (onAddTask) {
+      onAddTask(status);
+    }
   };
 
   return (

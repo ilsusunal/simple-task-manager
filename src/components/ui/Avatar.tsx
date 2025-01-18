@@ -15,7 +15,7 @@ export default function Avatar({
     <img
       src={src || "/default-avatar.png"}
       alt={alt}
-      className="rounded-full object-cover"
+      className="rounded-full object-cover border-2 border-primary"
       style={{ width: size, height: size }}
     />
   );

@@ -47,19 +47,27 @@ export default function TaskCard({ task }: TaskCardProps) {
       </section>
       <div className="border-b-2 my-4"></div>
 
-      {task.assignees.length > 0 && (
-        <div className="mt-2 flex -space-x-4">
-          {task.assignees.map((member, index) => (
-            <img
-              key={index}
-              src={member.avatar.src || "/default-avatar.png"}
-              alt={member.avatar.alt}
-              style={{ width: member.avatar.size, height: member.avatar.size }}
-              className="rounded-full border-2 border-primary"
-            />
-          ))}
-        </div>
-      )}
+      <section className="flex justify-between items-center">
+        {task.assignees.length > 0 && (
+          <div className="mt-2 flex -space-x-4">
+            {task.assignees.map((member, index) => (
+              <img
+                key={index}
+                src={member.avatar.src || "/default-avatar.png"}
+                alt={member.avatar.alt}
+                style={{
+                  width: member.avatar.size,
+                  height: member.avatar.size,
+                }}
+                className="rounded-full border-2 border-primary"
+              />
+            ))}
+          </div>
+        )}
+        <button>
+          <i className="ri-edit-box-line text-xl font-bold text-gray-400 hover:text-primary" />
+        </button>
+      </section>
     </div>
   );
 }
