@@ -2,7 +2,7 @@
 import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "basic";
   children: React.ReactNode;
 }
 
@@ -24,6 +24,10 @@ export default function Button({
       break;
     case "ghost":
       baseClasses += " bg-transparent hover:bg-neutral/10";
+      break;
+    case "basic":
+      baseClasses +=
+        " bg-white border-2 text-primary w-full hover:bg-neutral/10";
       break;
     default:
       break;

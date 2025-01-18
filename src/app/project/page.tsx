@@ -21,7 +21,6 @@ export default function ProjectPage() {
 
   const KanbanTab = (
     <div className="text-sm">
-      <h2 className="text-xl font-bold mb-2">Tasks</h2>
       <KanbanBoard />
     </div>
   );
