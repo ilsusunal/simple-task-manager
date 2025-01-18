@@ -15,11 +15,6 @@ export default function ProjectDetailPage() {
   const dispatch = useAppDispatch();
   const projects = useAppSelector((state) => state.projects.data);
 
-  const selectedProject = projects.find((p) => p.project.id === id);
-  if (!selectedProject) {
-    return <div>No project found for ID {id}</div>;
-  }
-
   const handleUpdateTaskStatus = useCallback(
     (taskId: string, newStatus: Task["status"]) => {
       dispatch(
@@ -34,6 +29,11 @@ export default function ProjectDetailPage() {
     },
     [dispatch, id]
   );
+
+  const selectedProject = projects.find((p) => p.project.id === id);
+  if (!selectedProject) {
+    return <div>No project found for ID {id}</div>;
+  }
 
   return (
     <ProjectPage

@@ -8,24 +8,10 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-
 import type { Task } from "@/types/kanban";
-import TaskCard from "../TaskCard";
-import Button from "@/components/ui/Button";
+import KanbanColumn from "./KanbanColumn";
 
 const STATUSES: Task["status"][] = ["open", "in-progress", "review", "done"];
-
-const labelMap: Record<Task["status"], string> = {
-  open: "Open",
-  "in-progress": "In Progress",
-  review: "Review",
-  done: "Done",
-};
 
 interface KanbanBoardProps {
   tasks: Task[];
@@ -33,11 +19,11 @@ interface KanbanBoardProps {
   onAddTask?: (columnStatus: Task["status"]) => void;
 }
 
-export default function KanbanBoard({
+const KanbanBoard = ({
   tasks,
   onUpdateTaskStatus,
   onAddTask,
-}: KanbanBoardProps) {
+}: KanbanBoardProps) => {
   const groupedTasks = STATUSES.map((status) => ({
     status,
     tasks: tasks.filter((t) => t.status === status),
@@ -52,6 +38,9 @@ export default function KanbanBoard({
 
       const draggedTaskId = active.id as string;
       const newStatus = over.id as Task["status"];
+
+      console.log("Dragged Task ID:", draggedTaskId, "Over:", newStatus);
+
       onUpdateTaskStatus(draggedTaskId, newStatus);
     },
     [onUpdateTaskStatus]
@@ -59,11 +48,7 @@ export default function KanbanBoard({
 
   return (
     <div className="space-y-4">
-      <DndContext
-        sensors={sensors}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis]}
-      >
+      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         <div className="grid grid-cols-4 gap-4">
           {groupedTasks.map((column) => (
             <KanbanColumn
@@ -77,36 +62,6 @@ export default function KanbanBoard({
       </DndContext>
     </div>
   );
-}
+};
 
-interface KanbanColumnProps {
-  status: Task["status"];
-  tasks: Task[];
-  onAddTask?: (columnStatus: Task["status"]) => void;
-}
-
-function KanbanColumn({ status, tasks, onAddTask }: KanbanColumnProps) {
-  const handleAddTask = () => {
-    if (onAddTask) {
-      onAddTask(status);
-    }
-  };
-
-  return (
-    <div className="p-4 bg-gray-100 rounded">
-      <h1 className="text-xl font-bold mb-2">{labelMap[status]}</h1>
-      <Button className="my-4" variant="basic" onClick={handleAddTask}>
-        + Add New Task
-      </Button>
-      <SortableContext
-        id={status}
-        items={tasks.map((task) => task.id)}
-        strategy={verticalListSortingStrategy}
-      >
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </SortableContext>
-    </div>
-  );
-}
+export default KanbanBoard;

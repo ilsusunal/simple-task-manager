@@ -1,28 +1,31 @@
 interface CustomLabelProps {
   label: string;
   icon?: string;
-  variant: "red" | "green" | "orange" | "primary" | "secondary";
+  variant: "red" | "green" | "orange" | "primary" | "secondary" | "basic";
 }
 
 const CustomLabel = ({ label, icon, variant }: CustomLabelProps) => {
   let baseClasses =
-    "flex items-center gap-2 px-2 py-1 rounded-md border-2 font-sm focus:outline-none";
+    "flex items-center gap-2 px-2 py-1  font-sm focus:outline-none";
 
   switch (variant) {
     case "primary":
-      baseClasses += " border-primary text-primary";
+      baseClasses += " rounded-md border-2  border-primary text-primary";
       break;
     case "secondary":
-      baseClasses += " border-secondary text-secondary";
+      baseClasses += " rounded-md border-2 border-secondary text-secondary";
       break;
     case "red":
-      baseClasses += " border-red-700 text-red-700";
+      baseClasses += " rounded-md border-2 border-red-700 text-red-700";
       break;
     case "green":
-      baseClasses += " border-lime-700 text-lime-700";
+      baseClasses += " rounded-md border-2 border-lime-700 text-lime-700";
       break;
     case "orange":
-      baseClasses += " border-orange-700 text-orange-700";
+      baseClasses += " rounded-md border-2 border-orange-700 text-orange-700";
+      break;
+    case "basic":
+      baseClasses += " bg-white rounded-full w-10 font-bold text-gray-400";
       break;
     default:
       break;

@@ -53,13 +53,17 @@ const projectsSlice = createSlice({
       }>
     ) => {
       const { projectId, taskId, status } = action.payload;
-      const project = state.data.find((p) => p.project.id === projectId);
+      const project = state.data.find((p) => p.id === projectId);
       if (!project) return;
+
+      console.log("Before updating tasks:", project.tasks);
 
       const task = project.tasks.find((t) => t.id === taskId);
       if (!task) return;
 
       task.status = status;
+
+      console.log("After updating tasks:", project.tasks);
     },
   },
   extraReducers: (builder) => {
@@ -84,6 +88,7 @@ const projectsSlice = createSlice({
         if (index !== -1) {
           state.data[index] = updated;
         }
+        console.log("PUT response:", action.payload);
       })
       .addCase(saveProjectToMockAPI.rejected, (state, action) => {
         console.error("Failed to save project to MockAPI:", action.error);

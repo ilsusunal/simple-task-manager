@@ -4,6 +4,7 @@ export interface PageData {
 }
 
 export interface ProjectData {
+  id: string;
   project: Project;
   team: Team;
   tasks: Task[];
