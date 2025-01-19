@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tasksReducer from "@/lib/features/tasks/tasksSlice";
 import projectsReducer from "@/lib/features/project/projectsSlice";
+import teamsReducer from "@/lib/features/teams/teamsSlicer";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      tasks: tasksReducer,
       projects: projectsReducer,
+      teams: teamsReducer,
     },
   });
 };

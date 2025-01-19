@@ -8,7 +8,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import type { Task } from "@/types/kanban";
+import type { Task, TeamMember } from "@/types/kanban";
 import KanbanColumn from "./KanbanColumn";
 
 const STATUSES: Task["status"][] = ["open", "in-progress", "review", "done"];
@@ -16,13 +16,15 @@ const STATUSES: Task["status"][] = ["open", "in-progress", "review", "done"];
 interface KanbanBoardProps {
   tasks: Task[];
   onUpdateTaskStatus?: (taskId: string, newStatus: Task["status"]) => void;
-  onAddTask?: (columnStatus: Task["status"]) => void;
+  onAddTask?: (status: Task["status"], newTaskData: Omit<Task, "id">) => void;
+  allTeamMembers?: TeamMember[];
 }
 
 const KanbanBoard = ({
   tasks,
   onUpdateTaskStatus,
   onAddTask,
+  allTeamMembers,
 }: KanbanBoardProps) => {
   const groupedTasks = STATUSES.map((status) => ({
     status,
@@ -56,6 +58,7 @@ const KanbanBoard = ({
               status={column.status}
               tasks={column.tasks}
               onAddTask={onAddTask}
+              teamMembers={allTeamMembers}
             />
           ))}
         </div>

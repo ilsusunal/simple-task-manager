@@ -23,6 +23,7 @@ export interface Task {
   id: string;
   title: string;
   status: "open" | "in-progress" | "review" | "done";
+  startDate: string;
   dueDate: string;
   description: string;
   assignees: TeamMember[];

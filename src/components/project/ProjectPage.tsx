@@ -5,16 +5,20 @@ import TabContainer from "@/components/ui/TabContainer";
 import Button from "@/components/ui/Button";
 import Avatar from "@/components/ui/Avatar";
 import KanbanBoard from "@/components/project/KanbanBoard/KanbanBoard";
-import type { ProjectData, Task } from "@/types/kanban";
+import type { ProjectData, Task, TeamMember } from "@/types/kanban";
 
 interface ProjectPageProps {
   projectData: ProjectData;
   onUpdateTaskStatus?: (taskId: string, newStatus: Task["status"]) => void;
+  onAddTask?: (status: Task["status"], newTaskData: Omit<Task, "id">) => void;
+  allTeamMembers?: TeamMember[];
 }
 
 export default function ProjectPage({
   projectData,
   onUpdateTaskStatus,
+  onAddTask,
+  allTeamMembers,
 }: ProjectPageProps) {
   if (!projectData) {
     return <div>Loading project data...</div>;
@@ -37,7 +41,12 @@ export default function ProjectPage({
 
   const KanbanTab = (
     <div className="text-sm">
-      <KanbanBoard tasks={tasks} onUpdateTaskStatus={onUpdateTaskStatus} />
+      <KanbanBoard
+        tasks={tasks}
+        onUpdateTaskStatus={onUpdateTaskStatus}
+        onAddTask={onAddTask}
+        allTeamMembers={allTeamMembers}
+      />
     </div>
   );
 

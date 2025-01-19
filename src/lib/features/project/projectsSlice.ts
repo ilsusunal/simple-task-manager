@@ -17,8 +17,10 @@ const initialState: ProjectsState = {
 export const fetchAllProjects = createAsyncThunk(
   "projects/fetchAllProjects",
   async () => {
-    const endpoint = process.env.NEXT_PUBLIC_PROJECTS_ENDPOINT;
-    const response = await axios.get<ProjectData[]>(endpoint || "");
+    const endpoint = process.env.NEXT_PUBLIC_ENDPOINT;
+    const response = await axios.get<ProjectData[]>(
+      `${endpoint}/project` || ""
+    );
     return response.data;
   }
 );
@@ -35,7 +37,7 @@ export const saveProjectToMockAPI = createAsyncThunk<
     throw new Error(`Project with id ${projectId} not found in store`);
   }
 
-  const putEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_ENDPOINT}/${projectId}`;
+  const putEndpoint = `${process.env.NEXT_PUBLIC_ENDPOINT}/project/${projectId}`;
   const response = await axios.put<ProjectData>(putEndpoint, projectData);
   return response.data;
 });
@@ -64,6 +66,24 @@ const projectsSlice = createSlice({
       task.status = status;
 
       console.log("After updating tasks:", project.tasks);
+    },
+    addTaskInProject: (
+      state,
+      action: PayloadAction<{
+        projectId: string;
+        task: Omit<Task, "id"> & { id?: string };
+      }>
+    ) => {
+      const { projectId, task } = action.payload;
+      const project = state.data.find((p) => p.project.id === projectId);
+      if (!project) return;
+
+      const newId = crypto.randomUUID();
+      const newTask: Task = {
+        ...task,
+        id: newId,
+      };
+      project.tasks.push(newTask);
     },
   },
   extraReducers: (builder) => {
@@ -96,5 +116,6 @@ const projectsSlice = createSlice({
   },
 });
 
-export const { updateTaskStatusInProject } = projectsSlice.actions;
+export const { updateTaskStatusInProject, addTaskInProject } =
+  projectsSlice.actions;
 export default projectsSlice.reducer;

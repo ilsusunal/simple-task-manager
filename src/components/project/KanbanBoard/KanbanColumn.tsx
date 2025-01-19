@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Button from "@/components/ui/Button";
-import { Task } from "@/types/kanban";
+import { Task, TeamMember } from "@/types/kanban";
 import { useDroppable } from "@dnd-kit/core";
 import TaskCard from "../TaskCard";
 import CustomLabel from "@/components/ui/CustomLabel";
+import TaskFormModal from "../TaskFormModal";
 
 const labelMap: Record<Task["status"], string> = {
   open: "Open",
@@ -17,19 +18,33 @@ const labelMap: Record<Task["status"], string> = {
 interface KanbanColumnProps {
   status: Task["status"];
   tasks: Task[];
-  onAddTask?: (columnStatus: Task["status"]) => void;
+  onAddTask?: (status: Task["status"], newTask: Omit<Task, "id">) => void;
+  teamMembers?: TeamMember[];
 }
 
-const KanbanColumn = ({ status, tasks, onAddTask }: KanbanColumnProps) => {
+const KanbanColumn = ({
+  status,
+  tasks,
+  onAddTask,
+  teamMembers = [],
+}: KanbanColumnProps) => {
   const { setNodeRef } = useDroppable({
     id: status,
   });
 
-  const handleAddTask = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleSaveTask = (newTaskData: Omit<Task, "id">) => {
     if (onAddTask) {
-      onAddTask(status);
+      onAddTask(status, newTaskData);
     }
+    handleCloseModal();
   };
+
+  const taskNumber = tasks.length;
 
   let statusColor = "";
 
@@ -50,7 +65,6 @@ const KanbanColumn = ({ status, tasks, onAddTask }: KanbanColumnProps) => {
       break;
   }
 
-  const taskNumber = tasks.length;
   return (
     <div ref={setNodeRef} className="p-4 bg-gray-100 rounded">
       <div className="flex justify-between mb-4">
@@ -60,13 +74,21 @@ const KanbanColumn = ({ status, tasks, onAddTask }: KanbanColumnProps) => {
         </div>
         <CustomLabel label={taskNumber.toString()} variant="basic" />
       </div>
-      <Button className="my-4" variant="basic" onClick={handleAddTask}>
+      <Button className="my-4" variant="basic" onClick={handleOpenModal}>
         + Add New Task
       </Button>
 
       {tasks.map((task) => (
         <TaskCard key={task.id} task={task} />
       ))}
+
+      <TaskFormModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSave={handleSaveTask}
+        status={status}
+        teamMembers={teamMembers}
+      />
     </div>
   );
 };
