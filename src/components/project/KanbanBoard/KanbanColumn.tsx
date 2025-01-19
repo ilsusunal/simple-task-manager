@@ -20,6 +20,7 @@ interface KanbanColumnProps {
   tasks: Task[];
   onAddTask?: (status: Task["status"], newTask: Omit<Task, "id">) => void;
   teamMembers?: TeamMember[];
+  activeId: string | null;
 }
 
 const KanbanColumn = ({
@@ -27,6 +28,7 @@ const KanbanColumn = ({
   tasks,
   onAddTask,
   teamMembers = [],
+  activeId,
 }: KanbanColumnProps) => {
   const { setNodeRef } = useDroppable({
     id: status,
@@ -79,7 +81,7 @@ const KanbanColumn = ({
       </Button>
 
       {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
+        <TaskCard key={task.id} task={task} isActive={activeId === task.id} />
       ))}
 
       <TaskFormModal

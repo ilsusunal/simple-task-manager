@@ -1,70 +1,74 @@
+// KanbanBoard.tsx (simplified for cross-column, no reordering)
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useState } from "react";
 import {
   DndContext,
+  DragStartEvent,
   DragEndEvent,
+  DragOverlay,
   MouseSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import type { Task, TeamMember } from "@/types/kanban";
+import type { Task } from "@/types/kanban";
 import KanbanColumn from "./KanbanColumn";
+import TaskCard from "../TaskCard";
 
 const STATUSES: Task["status"][] = ["open", "in-progress", "review", "done"];
 
 interface KanbanBoardProps {
   tasks: Task[];
   onUpdateTaskStatus?: (taskId: string, newStatus: Task["status"]) => void;
-  onAddTask?: (status: Task["status"], newTaskData: Omit<Task, "id">) => void;
-  allTeamMembers?: TeamMember[];
+  // ... other props ...
 }
 
-const KanbanBoard = ({
+export default function KanbanBoard({
   tasks,
   onUpdateTaskStatus,
-  onAddTask,
-  allTeamMembers,
-}: KanbanBoardProps) => {
-  const groupedTasks = STATUSES.map((status) => ({
-    status,
-    tasks: tasks.filter((t) => t.status === status),
-  }));
+}: KanbanBoardProps) {
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const sensors = useSensors(useSensor(MouseSensor));
 
-  const handleDragEnd = useCallback(
-    (event: DragEndEvent) => {
-      const { active, over } = event;
-      if (!over || !onUpdateTaskStatus) return;
+  function handleDragStart(event: DragStartEvent) {
+    setActiveId(event.active.id as string);
+  }
 
-      const draggedTaskId = active.id as string;
-      const newStatus = over.id as Task["status"];
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    setActiveId(null);
 
-      console.log("Dragged Task ID:", draggedTaskId, "Over:", newStatus);
-
-      onUpdateTaskStatus(draggedTaskId, newStatus);
-    },
-    [onUpdateTaskStatus]
-  );
+    if (onUpdateTaskStatus && over) {
+      onUpdateTaskStatus(active.id as string, over.id as Task["status"]);
+    }
+  }
 
   return (
-    <div>
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-4 gap-1">
-          {groupedTasks.map((column) => (
+    <DndContext
+      sensors={sensors}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
+      <div className="grid grid-cols-4 gap-4">
+        {STATUSES.map((status) => {
+          const columnTasks = tasks.filter((t) => t.status === status);
+          return (
             <KanbanColumn
-              key={column.status}
-              status={column.status}
-              tasks={column.tasks}
-              onAddTask={onAddTask}
-              teamMembers={allTeamMembers}
+              key={status}
+              status={status}
+              tasks={columnTasks}
+              activeId={activeId}
             />
-          ))}
-        </div>
-      </DndContext>
-    </div>
-  );
-};
+          );
+        })}
+      </div>
 
-export default KanbanBoard;
+      <DragOverlay>
+        {activeId ? (
+          <TaskCard task={tasks.find((t) => t.id === activeId)!} isOverlay />
+        ) : null}
+      </DragOverlay>
+    </DndContext>
+  );
+}

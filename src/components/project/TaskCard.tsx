@@ -9,15 +9,26 @@ import AvatarGroup from "./AvatarGroup";
 
 interface TaskCardProps {
   task: Task;
+  isOverlay?: boolean;
+  isActive?: boolean;
 }
 
-export default function TaskCard({ task }: TaskCardProps) {
-  const { attributes, listeners, setNodeRef, transform, isDragging } =
-    useDraggable({ id: task.id });
+export default function TaskCard({ task, isOverlay, isActive }: TaskCardProps) {
+  if (isOverlay) {
+    return (
+      <div className="bg-white p-3 border border-gray-300 shadow-md rounded-sm">
+        <h3 className="font-semibold">{task.title}</h3>
+      </div>
+    );
+  }
+
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: task.id,
+  });
 
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
-    opacity: isDragging ? 0.5 : 1,
+    opacity: isActive ? 0 : 1,
   };
 
   return (
