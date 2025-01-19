@@ -55,9 +55,9 @@ export default function ProjectPage({
   return (
     <section>
       <div className="flex items-center justify-between p-8">
-        <div className="flex gap-2 items-center">
-          <i className={`${project.icon} text-xl`} />
-          <span className="text-xl font-semibold">{project.title}</span>
+        <div className="flex gap-4 items-center">
+          <i className={`${project.icon} text-3xl`} />
+          <span className="text-2xl font-semibold">{project.title}</span>
         </div>
         <div className="flex items-center gap-4">
           <AvatarGroup users={allTeamMembers ?? []} />
