@@ -1,5 +1,3 @@
-import Avatar from "../ui/Avatar";
-
 export default function Header() {
   return (
     <header className="h-16 border-b-2 text-text flex items-center py-10 px-8">

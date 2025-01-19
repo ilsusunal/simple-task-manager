@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface AvatarProps {
@@ -12,7 +13,7 @@ export default function Avatar({
   size = 40,
 }: AvatarProps) {
   return (
-    <img
+    <Image
       src={src || "/default-avatar.png"}
       alt={alt}
       className="rounded-full object-cover border-2 border-primary"

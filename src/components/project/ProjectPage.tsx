@@ -3,7 +3,6 @@
 import React from "react";
 import TabContainer from "@/components/ui/TabContainer";
 import Button from "@/components/ui/Button";
-import Avatar from "@/components/ui/Avatar";
 import KanbanBoard from "@/components/project/KanbanBoard/KanbanBoard";
 import type { ProjectData, Task, TeamMember } from "@/types/kanban";
 import AvatarGroup from "./AvatarGroup";

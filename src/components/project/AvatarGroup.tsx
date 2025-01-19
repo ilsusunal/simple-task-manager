@@ -19,7 +19,7 @@ export default function AvatarGroup({ users, maxCount = 5 }: AvatarGroupProps) {
         </div>
       ))}
       {remainder > 0 && (
-        <div className="w-8 h-8 rounded-full bg-neutral flex items-center justify-center text-white text-xs border-2 border-white">
+        <div className="w-12 h-12 rounded-full bg-neutral flex items-center justify-center text-white text-xs border-2 border-white">
           +{remainder}
         </div>
       )}

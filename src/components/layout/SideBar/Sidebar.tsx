@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { fetchAllProjects } from "@/lib/features/project/projectsSlice";
 import Link from "next/link";
 import { fetchAllTeams } from "@/lib/features/teams/teamsSlicer";
-import Button from "../../ui/Button";
-import Avatar from "../../ui/Avatar";
 import ProjectList from "./ProjectList";
 import TeamList from "./TeamList";
 
@@ -33,8 +31,6 @@ export default function Sidebar() {
       dispatch(fetchAllTeams());
     }
   }, [projectsStatus, teamsStatus, dispatch]);
-
-  const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
 
   return (
     <section className="border-r-2 text-text flex flex-col w-min-72">

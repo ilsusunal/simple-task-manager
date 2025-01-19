@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent } from "react";
+import React from "react";
 
 export interface SelectOption {
   value: string;
@@ -13,6 +13,7 @@ interface CustomInputProps {
   as?: "input" | "textarea" | "select";
   options?: SelectOption[];
   multiple?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 

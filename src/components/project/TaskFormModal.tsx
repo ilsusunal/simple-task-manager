@@ -46,6 +46,7 @@ export default function TaskFormModal({
   }));
 
   const selectStyles = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     menuPortal: (base: any) => ({ ...base, zIndex: 9999 }),
   };
 

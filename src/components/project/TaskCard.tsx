@@ -14,6 +14,10 @@ interface TaskCardProps {
 }
 
 export default function TaskCard({ task, isOverlay, isActive }: TaskCardProps) {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: task.id,
+  });
+
   if (isOverlay) {
     return (
       <div className="bg-white p-3 border border-gray-300 shadow-md rounded-sm">
@@ -21,10 +25,6 @@ export default function TaskCard({ task, isOverlay, isActive }: TaskCardProps) {
       </div>
     );
   }
-
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: task.id,
-  });
 
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
