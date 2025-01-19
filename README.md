@@ -4,6 +4,9 @@
 
 This project is a simple, single-page Kanban board inspired by Jira. It provides an intuitive interface for managing tasks efficiently, allowing teams to stay organized and collaborate effectively.
 
+Checkout the demo : [Simple Task Management Demo](https://simple-task-manager-pearl.vercel.app)
+
+
 ### Key Features:
 
 - **Team Members List:** Displays a complete list of team members involved in the project.
