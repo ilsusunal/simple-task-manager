@@ -1,4 +1,3 @@
-// KanbanBoard.tsx (simplified for cross-column, no reordering)
 "use client";
 
 import React, { useState } from "react";
@@ -11,7 +10,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import type { Task } from "@/types/kanban";
+import type { Task, TeamMember } from "@/types/kanban";
 import KanbanColumn from "./KanbanColumn";
 import TaskCard from "../TaskCard";
 
@@ -20,13 +19,16 @@ const STATUSES: Task["status"][] = ["open", "in-progress", "review", "done"];
 interface KanbanBoardProps {
   tasks: Task[];
   onUpdateTaskStatus?: (taskId: string, newStatus: Task["status"]) => void;
-  // ... other props ...
+  onAddTask?: (status: Task["status"], newTaskData: Omit<Task, "id">) => void;
+  allTeamMembers?: TeamMember[];
 }
 
-export default function KanbanBoard({
+const KanbanBoard = ({
   tasks,
   onUpdateTaskStatus,
-}: KanbanBoardProps) {
+  onAddTask,
+  allTeamMembers,
+}: KanbanBoardProps) => {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const sensors = useSensors(useSensor(MouseSensor));
@@ -59,6 +61,8 @@ export default function KanbanBoard({
               status={status}
               tasks={columnTasks}
               activeId={activeId}
+              onAddTask={onAddTask}
+              teamMembers={allTeamMembers}
             />
           );
         })}
@@ -71,4 +75,6 @@ export default function KanbanBoard({
       </DragOverlay>
     </DndContext>
   );
-}
+};
+
+export default KanbanBoard;
