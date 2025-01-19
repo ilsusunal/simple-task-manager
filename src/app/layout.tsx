@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Nunito, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layout/SideBar/Sidebar";
 import Header from "@/components/layout/Header";
 import "remixicon/fonts/remixicon.css";
 import StoreProvider from "./StoreProvider";
+
+const nunitoFont = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${nunitoFont.variable} ${geistMono.variable} antialiased`}
       >
         <StoreProvider>
           <div className="flex min-h-screen">

@@ -38,10 +38,11 @@ export default function Sidebar() {
 
   return (
     <section className="border-r-2 text-text flex flex-col w-min-72">
-      <div className="p-6 font-bold text-xl text-primary">
-        Simple Task Manager
-      </div>
-
+      <Link href="/">
+        <div className="p-6 font-bold text-xl text-primary">
+          Simple Task Manager
+        </div>
+      </Link>
       <nav>
         <ProjectList
           projects={projects}

@@ -23,24 +23,24 @@ export default function ProjectList({
       {status === "loading" && <div>Loading projects...</div>}
       {status === "failed" && <div>Error: {error}</div>}
       {status === "succeeded" &&
-        projects.map((proj) => (
+        projects.map((project) => (
           <li
-            key={proj.project.id}
-            className={`font-semibold text-base border-2 rounded-md px-3 py-2 hover:bg-secondary hover:border-secondary w-60 ${
-              selectedProjectId === proj.project.id
+            key={project.project.id}
+            className={`font-semibold text-base border-2 rounded-md px-3 py-2 hover:bg-accent hover:border-accent w-60 ${
+              selectedProjectId === project.project.id
                 ? "bg-primary border-primary text-white"
                 : ""
             }`}
           >
-            <Link href={`/project/${proj.project.id}`}>
+            <Link href={`/project/${project.project.id}`}>
               <i
-                className={`${proj.project.icon} mr-2 ${
-                  selectedProjectId === proj.project.id
-                    ? "text-white"
-                    : "text-accent"
-                }`}
+                className={`${project.project.icon} ${
+                  Number(project.project.id) % 2 === 0
+                    ? "bg-secondary"
+                    : "bg-orange-200"
+                } p-1 rounded mr-2`}
               />
-              {proj.project.title}
+              {project.project.title}
             </Link>
           </li>
         ))}
