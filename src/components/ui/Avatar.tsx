@@ -16,8 +16,9 @@ export default function Avatar({
     <Image
       src={src || "/default-avatar.png"}
       alt={alt}
+      width={size}
+      height={size}
       className="rounded-full object-cover border-2 border-primary"
-      style={{ width: size, height: size }}
     />
   );
 }
