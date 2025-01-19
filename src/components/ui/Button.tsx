@@ -27,7 +27,7 @@ export default function Button({
       break;
     case "basic":
       baseClasses +=
-        " bg-white border-2 text-primary w-full hover:bg-neutral/10";
+        " bg-white border-2 text-primary w-full hover:bg-primary hover:border-primary hover:text-white";
       break;
     default:
       break;

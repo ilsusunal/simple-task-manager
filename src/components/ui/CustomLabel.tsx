@@ -6,7 +6,7 @@ interface CustomLabelProps {
 
 const CustomLabel = ({ label, icon, variant }: CustomLabelProps) => {
   let baseClasses =
-    "flex items-center gap-2 px-2 py-1  font-sm focus:outline-none";
+    "flex items-center gap-2 px-2 py-1 text-sm focus:outline-none";
 
   switch (variant) {
     case "primary":

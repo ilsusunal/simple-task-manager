@@ -19,7 +19,7 @@ export default function TabContainer({
 
   return (
     <div>
-      <div className="flex space-x-2 border-b border-neutral p-2">
+      <div className="flex space-x-2 border-b-2 overflow-y-auto">
         {tabs.map((tab, idx) => (
           <button
             key={tab.label}
@@ -35,8 +35,7 @@ export default function TabContainer({
         ))}
       </div>
 
-      {/* Tab Content */}
-      <div className="mt-4">
+      <div className="p-4 bg-background">
         {tabs[activeIndex]?.content ?? <div>No Content</div>}
       </div>
     </div>

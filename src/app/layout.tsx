@@ -36,7 +36,7 @@ export default function RootLayout({
             <Sidebar />
             <div className="flex flex-col flex-grow">
               <Header />
-              <main className="p-4 flex-grow">{children}</main>
+              <main>{children}</main>
             </div>
           </div>
         </StoreProvider>

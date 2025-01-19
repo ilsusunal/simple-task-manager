@@ -6,6 +6,9 @@ import Button from "@/components/ui/Button";
 import Avatar from "@/components/ui/Avatar";
 import KanbanBoard from "@/components/project/KanbanBoard/KanbanBoard";
 import type { ProjectData, Task, TeamMember } from "@/types/kanban";
+import AvatarGroup from "./AvatarGroup";
+import TeamPage from "./Team/TeamPage";
+import OverviewPage from "./Overview/OverviewPage";
 
 interface ProjectPageProps {
   projectData: ProjectData;
@@ -21,7 +24,7 @@ export default function ProjectPage({
   allTeamMembers,
 }: ProjectPageProps) {
   if (!projectData) {
-    return <div>Loading project data...</div>;
+    return <div>Loading...</div>;
   }
 
   const { project, tasks, team } = projectData;
@@ -30,40 +33,18 @@ export default function ProjectPage({
     return <div>No team data found in this project.</div>;
   }
 
-  const OverviewTab = (
-    <div className="text-sm">
-      <h2 className="text-xl font-bold mb-2">Overview</h2>
-      <p>{project.description}</p>
-      <p>Start Date: {project.startDate}</p>
-      <p>Due Date: {project.dueDate}</p>
-    </div>
-  );
+  const OverviewTab = <OverviewPage project={project} />;
 
   const KanbanTab = (
-    <div className="text-sm">
-      <KanbanBoard
-        tasks={tasks}
-        onUpdateTaskStatus={onUpdateTaskStatus}
-        onAddTask={onAddTask}
-        allTeamMembers={allTeamMembers}
-      />
-    </div>
+    <KanbanBoard
+      tasks={tasks}
+      onUpdateTaskStatus={onUpdateTaskStatus}
+      onAddTask={onAddTask}
+      allTeamMembers={allTeamMembers}
+    />
   );
 
-  const TeamTab = (
-    <div className="text-sm">
-      <h2 className="text-xl font-bold mb-2">{team.title}</h2>
-      <p>{team.description}</p>
-      <div className="flex gap-2 flex-wrap mt-4">
-        {team.teamMembers.map((member) => (
-          <div key={member.id} className="flex items-center gap-2">
-            <Avatar src={member.avatar.src} alt={member.avatar.alt} />
-            <span>{member.fullName}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  const TeamTab = <TeamPage team={team} />;
 
   const tabs = [
     { label: "Overview", content: OverviewTab },
@@ -72,15 +53,18 @@ export default function ProjectPage({
   ];
 
   return (
-    <section className="space-y-6">
-      <div className="flex items-center justify-between bg-white p-4 rounded-md shadow-sm">
+    <section>
+      <div className="flex items-center justify-between p-8">
         <div className="flex gap-2 items-center">
           <i className={`${project.icon} text-xl`} />
           <span className="text-xl font-semibold">{project.title}</span>
         </div>
-        <Button variant="primary" onClick={() => alert("Add member!")}>
-          + Add Member
-        </Button>
+        <div className="flex items-center gap-4">
+          <AvatarGroup users={allTeamMembers ?? []} />
+          <Button variant="primary" onClick={() => alert("Add member!")}>
+            + Add Member
+          </Button>
+        </div>
       </div>
 
       <TabContainer tabs={tabs} />

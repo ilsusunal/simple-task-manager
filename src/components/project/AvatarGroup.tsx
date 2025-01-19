@@ -1,14 +1,9 @@
 import React from "react";
 import Avatar from "../ui/Avatar";
-
-interface User {
-  id: number | string;
-  name: string;
-  avatar?: string;
-}
+import { TeamMember } from "@/types/kanban";
 
 interface AvatarGroupProps {
-  users: User[];
+  users: TeamMember[];
   maxCount?: number;
 }
 
@@ -20,7 +15,7 @@ export default function AvatarGroup({ users, maxCount = 5 }: AvatarGroupProps) {
     <div className="flex -space-x-2">
       {displayedUsers.map((user) => (
         <div key={user.id} className="border-2 border-white rounded-full">
-          <Avatar src={user.avatar} alt={user.name} size={60} />
+          <Avatar src={user.avatar.src} alt={user.fullName} size={40} />
         </div>
       ))}
       {remainder > 0 && (

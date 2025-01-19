@@ -66,7 +66,7 @@ const KanbanColumn = ({
   }
 
   return (
-    <div ref={setNodeRef} className="p-4 bg-gray-100 rounded">
+    <div ref={setNodeRef} className="p-4">
       <div className="flex justify-between mb-4">
         <div className="flex gap-2 items-center">
           <div className={`${statusColor} w-3 h-3 rounded-full`}></div>

@@ -17,10 +17,6 @@ export default function Header() {
         <button className="ml-4">
           <i className="ri-notification-line text-2xl text-gray-400 hover:text-primary" />
         </button>
-        <button className="flex gap-2 items-center ml-4">
-          <Avatar src="/default-avatar.png" alt="Profile" />
-          İlsu Sunal
-        </button>
       </div>
     </header>
   );
